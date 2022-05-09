@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     const { request, session, version, state } = await json(req);
     const sessionState = state && state.session || {};
     if (session["new"]){
-        res.end(JSON.stringify(
+        res.send(JSON.stringify(
             {
                 version,
                 session, 
@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
                     text: '',
                     card: {type:"BigImage",
                             "image_id": "213044/9ffce16788e5ce5e809a",
-                            "description":'Привет. Добро пожаловать в игру "Узнай правду"! Сюжетный режим представляет собой текстовое повествование с нелинейным сюжетом и разными вариантами концовок. Вы можете влиять на развитие истории благодаря выбору, который совершаете за персонажа. Аркадный режим представляет собой ряд интересных вопросов в зависимости от сложности, которую вам также предстоит выбрать! Теперь выберите режим.'},
+                            "description":'Привет. Добро пожаловать в игру "Узнай правду"! Сюжетный режим представляет собой текстовое повествование с нелинейным сюжетом и разными вариантами концовок. Вы можете влиять на развитие истории благодаря выбору, который совершаете за персонажа. Аркадный режим представляет собой ряд интересных вопросов в зависимости от сложности, которую вам также предстоит выбрать! Теперь выберите режим:"сюжетный или аркадный'},
                     session_state: sessionState,        
                     end_session: false,
                     buttons:[{ title: 'Помощь', hide: false },{ title: 'Сюжетный режим', hide: false },{ title: 'Аркадный режим', hide: false }]
@@ -26,20 +26,21 @@ module.exports = async (req, res) => {
     }else{
         const str = getStr(sessionState,request);
         if (str[1] == "выход"){
-            res.end(JSON.stringify(
-            {
-                response: {
-                    text: str[0],
-                    end_session: true,
-                },
-                session_state: sessionState,
-                version: '1.0'
-            }
-        ))
+            res.send(JSON.stringify(
+                {
+                    response: {
+                        text: "Выхожу..",
+                        buttons:[]
+                    },
+                    session_state: sessionState,
+                    version: '1.0',
+                    end_session:true
+                }
+            ))
         }
         if (str[1]==""||str[1] == undefined)
         {
-            res.end(JSON.stringify(
+            res.send(JSON.stringify(
                 {
                     response: {
                         text: str[0],
@@ -51,7 +52,7 @@ module.exports = async (req, res) => {
             ))
         }
         else{
-            res.end(JSON.stringify(
+            res.send(JSON.stringify(
                 {
                     response: {
                         text: "",
@@ -89,7 +90,7 @@ function getStr(sessionState,request){
     let str = "";
     let paintID = "";
     let buttons = []
-    if (fromAnyAction(request,["Культ кота в тапках","Культ котов в тапках"])){
+    if (fromAnyAction(request,["Культ кота в тапках","Культ котов в тапках"])){//пасхалочка
         str = "Стоп, стоп, стоп.. Откуда ты знаешь о его существовании? Кто тебе это рассказал? Нет, нет, нет... Это слишком секретная информация.. Никому не говори о нём или коты в тапках придут и заберут тебя."
         paintID = "1533899/39235b10b093ec5c458a";
     }
@@ -104,12 +105,27 @@ function getStr(sessionState,request){
     if (fromAnyAction(request,["помощь","помогите"])){
         str = "Аркадный режим - включает аркадный режим\nСюжетный режим - включает сюжетный режим\nПомощь - выводит доступные команды\nВыход - выходит из игры\n"
         if (isStory){
-        	str+="Фраза - говорит текущую фразу или задачу\nНачать новую игру - запускает новую игру"
+        	str+="Повтори - говорит текущую фразу или задачу\nНачать новую игру - запускает новую игру\n\nВы можете повторить фразу или задачу."
         }
-        if (isArcade){
-        	str+="Легкая/Средняя/Сложная сложность - смена сложности вопроса\nВопрос - выводит текущий вопрос\nСдаться - пропускает вопрос и говорит ответ на него"
+        else if (isArcade){
+        	str+="Легкая/Средняя/Сложная сложность - смена сложности вопроса\nВопрос - выводит текущий вопрос\nСдаться - пропускает вопрос и говорит ответ на него\n\nВы можете повторить вопрос."
+        	if (quests!= undefined){
+	            quests[questionNum2]["variants"].forEach(function(item, i, q) {
+	                if (item == "nan"){
+	                    return;
+	                }
+	                buttons.push({ title: item, hide: true })
+	            })
+        	}else{
+                    buttons.push({ title: "Лёгкая", hide: true })
+                    buttons.push({ title: "Средняя", hide: true })
+                    buttons.push({ title: "Сложная", hide: true })
+        	}
+            buttons.push({ title: "Вопрос", hide: true })
+        }else{
+        	buttons = { title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}
         }
-        return [str,"",[{ title: 'Помощь', hide: true },{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]]
+        return [str,"",[].concat(buttons,[{ title: 'Помощь', hide: true },{ title: 'Выход', hide: true }])]
     }
     if (fromAnyAction(request,["Сюжетный режим","сюжет", "сюжетка","сюжетку"])){
         if (isStory == false){
@@ -123,6 +139,16 @@ function getStr(sessionState,request){
         }
     }
     if (isStory){
+      	if (fromAnyAction(request,["новую игру","новая игра","новые игры"])){
+    		travel = "0";
+    		storyQuest = -1;
+    	}
+    	if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
+    		str+=storyObj.a+"\n";
+            if (storyObj.p != undefined){
+                paintID = storyObj.p
+            }
+      	}
         if (storyQuest>0)
         {  
             if (getAns(request,[storyMissions[String(storyQuest)].b],-2)!= -1){
@@ -138,7 +164,7 @@ function getStr(sessionState,request){
             else{
                 str =["Пока неправильно, можешь попробовать еще раз.","Неправильно.","Ответ неверный.","Неверно.","Пока неправильно."][Math.floor(Math.random() * 5)]
             }
-            if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить"])){
+            if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
                 str = storyMissions[String(storyQuest)].a;
                 paintID = storyMissions[String(storyQuest)].p; 
             }
@@ -156,10 +182,6 @@ function getStr(sessionState,request){
         }
         if (storyQuest<=0)
         {  
-        	if (fromAnyAction(request,["новую игру","новая игра","новые игры"])){
-        		travel = "0";
-        		storyQuest = -1;
-        	}
             if (storyQuest != -2){
                 let num3 = -1;
                 if (storyQuest == 0){
