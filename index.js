@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     const { request, session, version, state } = await json(req);
     const sessionState = state && state.session || {};
     if (session["new"]){
-        res.send(JSON.stringify(
+        res.end(JSON.stringify(
             {
                 version,
                 session, 
@@ -29,10 +29,8 @@ module.exports = async (req, res) => {
             res.end(JSON.stringify(
                 {
                     response: {
-                        text: "Выхожу..",
-                        buttons:[]
+                        text: "Выхожу.."
                     },
-                    session_state: sessionState,
                     version: '1.0',
                     end_session:true
                 }
@@ -40,7 +38,7 @@ module.exports = async (req, res) => {
         }
         if (str[1]==""||str[1] == undefined)
         {
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
                 {
                     response: {
                         text: str[0],
@@ -52,7 +50,7 @@ module.exports = async (req, res) => {
             ))
         }
         else{
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
                 {
                     response: {
                         text: "",
@@ -150,118 +148,120 @@ function getStr(sessionState,request){
                 paintID = storyObj.p
             }
       	}
-        if (storyQuest>0)
-        {  
-            if (getAns(request,[storyMissions[String(storyQuest)].b],-2)!= -1){
-                str+=["Правильно!\n","Молодец!\n","Молодец, правильно!\n","Неплохо!\n"][Math.floor(Math.random() * 4)];
-                storyQuest = -1;
-                const travelC = getStoryObj(travel,story).c[0];
-                if (travelC.length == 1){
-                    travel+=travelC
-                }else{
-                    travel = travelC;
-                }
-            }
-            else{
-                str =["Пока неправильно, можешь попробовать еще раз.","Неправильно.","Ответ неверный.","Неверно.","Пока неправильно."][Math.floor(Math.random() * 5)]
-            }
-            if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
-                str = storyMissions[String(storyQuest)].a;
-                paintID = storyMissions[String(storyQuest)].p; 
-            }
-            if (fromAnyAction(request,["сдаюсь","сдаваться","сдаётся","сдаться"])){
-                str ="Правильный ответ был "+storyMissions[String(storyQuest)].b[0]+"\n";
-                storyQuest = -1;
-                const travelC = getStoryObj(travel,story).c[0];
-                if (travelC.length == 1){
-                    travel+=travelC
-                }else{
-                    travel = travelC;
-                }
-            }
+      	else{
+	        if (storyQuest>0)
+	        {  
+	            if (getAns(request,[storyMissions[String(storyQuest)].b],-2)!= -1){
+	                str+=["Правильно!\n","Молодец!\n","Молодец, правильно!\n","Неплохо!\n"][Math.floor(Math.random() * 4)];
+	                storyQuest = -1;
+	                const travelC = getStoryObj(travel,story).c[0];
+	                if (travelC.length == 1){
+	                    travel+=travelC
+	                }else{
+	                    travel = travelC;
+	                }
+	            }
+	            else{
+	                str =["Пока неправильно, можешь попробовать еще раз.","Неправильно.","Ответ неверный.","Неверно.","Пока неправильно."][Math.floor(Math.random() * 5)]
+	            }
+	            if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
+	                str = storyMissions[String(storyQuest)].a;
+	                paintID = storyMissions[String(storyQuest)].p; 
+	            }
+	            if (fromAnyAction(request,["сдаюсь","сдаваться","сдаётся","сдаться"])){
+	                str ="Правильный ответ был "+storyMissions[String(storyQuest)].b[0]+"\n";
+	                storyQuest = -1;
+	                const travelC = getStoryObj(travel,story).c[0];
+	                if (travelC.length == 1){
+	                    travel+=travelC
+	                }else{
+	                    travel = travelC;
+	                }
+	            }
 
-        }
-        if (storyQuest<=0)
-        {  
-            if (storyQuest != -2){
-                let num3 = -1;
-                if (storyQuest == 0){
-                    num3 =  getAns(request, [["да"],["нет"]])
-                }
-                if (num3!=-1){
-                    const travelC = getStoryObj(travel,story).c[num3];
-                    if (travelC.length == 1){
-                        travel+=travelC
-                    }else{
-                        travel = travelC;
-                    }
-                }
-                while (true){
-                    if (storyQuest == 0 && num3 == -1){
-                        str = dontGetAns();
-                        break;
-                    }
-                    const storyObj = getStoryObj(travel,story);
-                    if (storyQuest.p != undefined){л    
-                        paintID = storyObj.p;
-                    }
-                    str+=storyObj.a+"\n";
+	        }
+	        if (storyQuest<=0)
+	        {  
+	            if (storyQuest != -2){
+	                let num3 = -1;
+	                if (storyQuest == 0){
+	                    num3 =  getAns(request, [["да"],["нет"]])
+	                }
+	                if (num3!=-1){
+	                    const travelC = getStoryObj(travel,story).c[num3];
+	                    if (travelC.length == 1){
+	                        travel+=travelC
+	                    }else{
+	                        travel = travelC;
+	                    }
+	                }
+	                while (true){
+	                    if (storyQuest == 0 && num3 == -1){
+	                        str = dontGetAns();
+	                        break;
+	                    }
+	                    const storyObj = getStoryObj(travel,story);
+	                    if (storyQuest.p != undefined){л    
+	                        paintID = storyObj.p;
+	                    }
+	                    str+=storyObj.a+"\n";
 
-                    if (storyObj.p != undefined){
-                        paintID = storyObj.p
-                    }
-                    storyQuest = storyObj.b;
-                    if (storyQuest>0){
-                        str += "\n\n";
-                        str+=storyMissions[String(storyQuest)].a;
-                        paintID = storyMissions[String(storyQuest)].p; 
-                        break;
-                    }
-                    if (storyObj.c.length == 1){
-                        if (storyObj.c[0].length == 1){
-                            travel += storyObj.c[0];
-                        }else{
-                            travel = storyObj.c[0];
-                        }
-                        storyQuest= -1;
-                        continue;
-                    }
-                    buttons.push({ title: 'Да', hide: true });
-                    buttons.push({ title: 'Нет', hide: true });
+	                    if (storyObj.p != undefined){
+	                        paintID = storyObj.p
+	                    }
+	                    storyQuest = storyObj.b;
+	                    if (storyQuest>0){
+	                        str += "\n\n";
+	                        str+=storyMissions[String(storyQuest)].a;
+	                        paintID = storyMissions[String(storyQuest)].p; 
+	                        break;
+	                    }
+	                    if (storyObj.c.length == 1){
+	                        if (storyObj.c[0].length == 1){
+	                            travel += storyObj.c[0];
+	                        }else{
+	                            travel = storyObj.c[0];
+	                        }
+	                        storyQuest= -1;
+	                        continue;
+	                    }
+	                    buttons.push({ title: 'Да', hide: true });
+	                    buttons.push({ title: 'Нет', hide: true });
 
-                    if (storyQuest >= 0){
-                        break;
-                    }
-                    if (storyObj.c.length == 0){
-                        str+="Вы прошли сюжет. Хотите начать заного?"
-                        storyQuest = -2;
-                        break
-                    }
-                }
-            }
-            else{
-                let num3 = -1;
-                num3 =  getAns(request, [["да"],["нет"]])
-                if (num3 == -1){
-                    str = dontGetAns();
-                }
-                else{
-                    if (num3 == 1){
-                        str = "Выберете режим сюжетный или аркадный."
-                        isArcade = false;
-                        isStory = false;
-                        storyQuest = -1;
-                        travel = "0";
-                        buttons = [{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]
-                    }else{
-                        isArcade = false;
-                        isStory = true;
-                        storyQuest = -1;
-                        travel = "0";
-                    }
-                }
-            }
-        }
+	                    if (storyQuest >= 0){
+	                        break;
+	                    }
+	                    if (storyObj.c.length == 0){
+	                        str+="Вы прошли сюжет. Хотите начать заного?"
+	                        storyQuest = -2;
+	                        break
+	                    }
+	                }
+	            }
+	            else{
+	                let num3 = -1;
+	                num3 =  getAns(request, [["да"],["нет"]])
+	                if (num3 == -1){
+	                    str = dontGetAns();
+	                }
+	                else{
+	                    if (num3 == 1){
+	                        str = "Выберете режим сюжетный или аркадный."
+	                        isArcade = false;
+	                        isStory = false;
+	                        storyQuest = -1;
+	                        travel = "0";
+	                        buttons = [{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]
+	                    }else{
+	                        isArcade = false;
+	                        isStory = true;
+	                        storyQuest = -1;
+	                        travel = "0";
+	                    }
+	                }
+	            }
+	        }
+    	}
 
     }
     if (isArcade){
