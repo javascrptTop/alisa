@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "Выхожу..",
+                        end_session:true
                     },
                     version: '1.0',
                 }
