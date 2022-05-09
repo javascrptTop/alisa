@@ -138,10 +138,17 @@ function getStr(sessionState,request){
     }
     if (isStory){
       	if (fromAnyAction(request,["новую игру","новая игра","новые игры"])){
-      		str+="Вы начали новую игру";
+      		str+="Вы начали новую игру\n";
     		travel = "0";
     		storyQuest = -1;
     	}
+    	if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
+		    const storyObj = getStoryObj(travel,story);
+    		str+=storyObj.a+"\n";
+            if (storyObj.p != undefined){
+                paintID = storyObj.p
+            }
+      	}
       	else{
 	        if (storyQuest>0)
 	        {  
@@ -177,70 +184,60 @@ function getStr(sessionState,request){
 	        if (storyQuest<=0)
 	        {  
 	            if (storyQuest != -2){
-	            	if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
-					    const storyObj = getStoryObj(travel,story);
-			    		str+=storyObj.a+"\n";
-			            if (storyObj.p != undefined){
-			                paintID = storyObj.p
-			            }
-				    }
-				    else
-				    {
-		                let num3 = -1;
-		                if (storyQuest == 0){
-		                    num3 =  getAns(request, [["да"],["нет"]])
-		                }
-		                if (num3!=-1){
-		                    const travelC = getStoryObj(travel,story).c[num3];
-		                    if (travelC.length == 1){
-		                        travel+=travelC
-		                    }else{
-		                        travel = travelC;
-		                    }
-		                }
-		                while (true){
-		                    if (storyQuest == 0 && num3 == -1){
-		                        str = dontGetAns();
-		                        break;
-		                    }
-		                    const storyObj = getStoryObj(travel,story);
-		                    if (storyQuest.p != undefined){л    
-		                        paintID = storyObj.p;
-		                    }
-		                    str+=storyObj.a+"\n";
+	                let num3 = -1;
+	                if (storyQuest == 0){
+	                    num3 =  getAns(request, [["да"],["нет"]])
+	                }
+	                if (num3!=-1){
+	                    const travelC = getStoryObj(travel,story).c[num3];
+	                    if (travelC.length == 1){
+	                        travel+=travelC
+	                    }else{
+	                        travel = travelC;
+	                    }
+	                }
+	                while (true){
+	                    if (storyQuest == 0 && num3 == -1){
+	                        str = dontGetAns();
+	                        break;
+	                    }
+	                    const storyObj = getStoryObj(travel,story);
+	                    if (storyQuest.p != undefined){л    
+	                        paintID = storyObj.p;
+	                    }
+	                    str+=storyObj.a+"\n";
 
-		                    if (storyObj.p != undefined){
-		                        paintID = storyObj.p
-		                    }
-		                    storyQuest = storyObj.b;
-		                    if (storyQuest>0){
-		                        str += "\n\n";
-		                        str+=storyMissions[String(storyQuest)].a;
-		                        paintID = storyMissions[String(storyQuest)].p; 
-		                        break;
-		                    }
-		                    if (storyObj.c.length == 1){
-		                        if (storyObj.c[0].length == 1){
-		                            travel += storyObj.c[0];
-		                        }else{
-		                            travel = storyObj.c[0];
-		                        }
-		                        storyQuest= -1;
-		                        continue;
-		                    }
-		                    buttons.push({ title: 'Да', hide: true });
-		                    buttons.push({ title: 'Нет', hide: true });
+	                    if (storyObj.p != undefined){
+	                        paintID = storyObj.p
+	                    }
+	                    storyQuest = storyObj.b;
+	                    if (storyQuest>0){
+	                        str += "\n\n";
+	                        str+=storyMissions[String(storyQuest)].a;
+	                        paintID = storyMissions[String(storyQuest)].p; 
+	                        break;
+	                    }
+	                    if (storyObj.c.length == 1){
+	                        if (storyObj.c[0].length == 1){
+	                            travel += storyObj.c[0];
+	                        }else{
+	                            travel = storyObj.c[0];
+	                        }
+	                        storyQuest= -1;
+	                        continue;
+	                    }
+	                    buttons.push({ title: 'Да', hide: true });
+	                    buttons.push({ title: 'Нет', hide: true });
 
-		                    if (storyQuest >= 0){
-		                        break;
-		                    }
-		                    if (storyObj.c.length == 0){
-		                        str+="Вы прошли сюжет. Хотите начать заного?"
-		                        storyQuest = -2;
-		                        break
-		                    }
-		                }
-		            }
+	                    if (storyQuest >= 0){
+	                        break;
+	                    }
+	                    if (storyObj.c.length == 0){
+	                        str+="Вы прошли сюжет. Хотите начать заного?"
+	                        storyQuest = -2;
+	                        break
+	                    }
+	                }
 	            }
 	            else{
 	                let num3 = -1;
@@ -349,7 +346,7 @@ function getStr(sessionState,request){
                             str += quests[questionNum2]["question"]+"\n";
                             quests[questionNum2]["variants"].forEach(function(item, i, q) {
                                                     if (item == "nan"){
-                        								return;
+                        return;
                     }
                                         buttons.push({ title: item, hide: true })
                                 str+=String(i+1)+". "+ item+"\n";
