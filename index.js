@@ -120,7 +120,7 @@ function getStr(sessionState,request){
         	}
             buttons.push({ title: "Вопрос", hide: true })
         }else{
-        	buttons = { title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}
+        	buttons = [{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]
         }
         return [str,"",[].concat(buttons,[{ title: 'Помощь', hide: true },{ title: 'Выход', hide: true }])]
     }
