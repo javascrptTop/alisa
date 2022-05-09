@@ -29,7 +29,8 @@ module.exports = async (req, res) => {
             res.end(JSON.stringify(
                 {
                     response: {
-                        text: "А дело то не в этом...",
+                        text: "Выхожу..",
+                    	end_session: true
                     },
                     version: '1.0',
                 }
@@ -120,7 +121,7 @@ function getStr(sessionState,request){
         	}
             buttons.push({ title: "Вопрос", hide: true })
         }else{
-        	buttons = [{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]
+        	buttons = { title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}
         }
         return [str,"",[].concat(buttons,[{ title: 'Помощь', hide: true },{ title: 'Выход', hide: true }])]
     }
@@ -426,7 +427,7 @@ function getStr(sessionState,request){
                         buttons.push({ title: "Вопрос", hide: true })
                     }
                 }
-            }
+            }						
         }
 
     }
@@ -443,7 +444,7 @@ function getStr(sessionState,request){
         }
     }
     if (isStory == false&& isArcade == false){
-		buttons = [{ title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}]
+		buttons = { title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}
     }
     sessionState.isArcade = isArcade;
     sessionState.isStory = isStory;
