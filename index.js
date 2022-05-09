@@ -26,14 +26,14 @@ module.exports = async (req, res) => {
     }else{
         const str = getStr(sessionState,request);
         if (str[1] == "выход"){
-            return
-            {
-                response: {
-                    text: "Выхожу..",
-                	end_session: true
-                },
-                version: '1.0',
-   			}
+            res.end(JSON.stringify(
+                {
+                    response: {
+                        text: "А дело то не в этом...",
+                    },
+                    version: '1.0',
+                }
+            ))
         }
         else if (str[1]==""||str[1] == undefined)
         {
