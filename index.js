@@ -349,7 +349,7 @@ function getStr(sessionState,request){
                             str += quests[questionNum2]["question"]+"\n";
                             quests[questionNum2]["variants"].forEach(function(item, i, q) {
                                                     if (item == "nan"){
-                        return;
+                        								return;
                     }
                                         buttons.push({ title: item, hide: true })
                                 str+=String(i+1)+". "+ item+"\n";
