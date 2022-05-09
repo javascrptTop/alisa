@@ -9,7 +9,7 @@ const server = app.get("/",function(req, res) {
     const { request, session, version, state } = json(req);
     const sessionState = state && state.session || {};
     if (session["new"]){
-        res.send(JSON.stringify(
+        res.end(JSON.stringify(
             {
                 version,
                 session, 
@@ -27,7 +27,7 @@ const server = app.get("/",function(req, res) {
     }else{
         const str = getStr(sessionState,request);
         if (str[1] == "выход"){
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
             {
                 response: {
                     text: str[0],
@@ -40,7 +40,7 @@ const server = app.get("/",function(req, res) {
         }
         if (str[1]==""||str[1] == undefined)
         {
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
                 {
                     response: {
                         text: str[0],
@@ -52,7 +52,7 @@ const server = app.get("/",function(req, res) {
             ))
         }
         else{
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
                 {
                     response: {
                         text: "",
