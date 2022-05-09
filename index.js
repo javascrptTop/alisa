@@ -30,7 +30,6 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "Выхожу..",
-                    	end_session: true
                     },
                     version: '1.0',
                 }
@@ -427,7 +426,7 @@ function getStr(sessionState,request){
                         buttons.push({ title: "Вопрос", hide: true })
                     }
                 }
-            }						
+            }
         }
 
     }
@@ -442,9 +441,6 @@ function getStr(sessionState,request){
             buttons.push({ title: "Средняя", hide: true })
             buttons.push({ title: "Сложная", hide: true })
         }
-    }
-    if (isStory == false&& isArcade == false){
-		buttons = { title: 'Сюжетный режим', hide: true },{ title: 'Аркадный режим', hide:true}
     }
     sessionState.isArcade = isArcade;
     sessionState.isStory = isStory;
