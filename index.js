@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
             ))
         }
     }
-});
+};
 
 
 function getStr(sessionState,request){
