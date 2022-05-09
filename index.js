@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     }else{
         const str = getStr(sessionState,request);
         if (str[1] == "выход"){
-            res.send(JSON.stringify(
+            res.end(JSON.stringify(
                 {
                     response: {
                         text: "Выхожу..",
@@ -144,6 +144,7 @@ function getStr(sessionState,request){
     		storyQuest = -1;
     	}
     	if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
+		    const storyObj = getStoryObj(travel,story);
     		str+=storyObj.a+"\n";
             if (storyObj.p != undefined){
                 paintID = storyObj.p
