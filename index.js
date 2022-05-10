@@ -308,7 +308,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "Выхожу..",
-                        tts:str[0],
+                        tts:str[3][0]+str[0]+str[3][1],
                         end_session:true
                     },
                     version: '1.0',
@@ -321,7 +321,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: str[0],
-                        tts:str[0],
+                        tts:str[3][0]+str[0]+str[3][1],
                         buttons:str[2]
                     },
                     session_state: sessionState,
@@ -334,7 +334,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "",
-                        tts:str[0],
+                        tts:str[3][0]+str[0]+str[3][1],
                         buttons:str[2],
                         card: {type:"BigImage",
                                 image_id: str[1],
@@ -369,7 +369,7 @@ function getStr(sessionState,request){
     let str = "";
     let paintID = "";
     let buttons = [];
-    let sound = ['',''];
+    let sounds = ['',''];
     if (fromAnyAction(request,["Культ кота в тапках","Культ котов в тапках"])){//пасхалочка
         str = "Стоп, стоп, стоп.. Откуда ты знаешь о его существовании? Кто тебе это рассказал? Нет, нет, нет... Это слишком секретная информация.. Никому не говори о нём или коты в тапках придут и заберут тебя."
         paintID = "1533899/39235b10b093ec5c458a";
