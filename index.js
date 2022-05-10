@@ -491,7 +491,13 @@ function getStr(sessionState,request){
 	                        break;
 	                    }
 	                    const storyObj = getStoryObj(travel,story);
-	                    if (storyQuest.p != undefined){л    
+	                    if (storyObj.t!= undefined){
+			    			sounds[0] = storyObj.t;
+			    		}
+						if (storyObj.g!= undefined){
+			    			sounds[1] = storyObj.g;
+						}
+	                    if (storyQuest.p != undefined){    
 	                        paintID = storyObj.p;
 	                    }
 	                    str+=storyObj.a+"\n";
