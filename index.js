@@ -303,12 +303,13 @@ module.exports = async (req, res) => {
         ));
     }else{
         const str = getStr(sessionState,request);
+        const t = String(str[3][0])+str[0]+String(str[3][1]);
         if (str[1] == "выход"){
             res.end(JSON.stringify(
                 {
                     response: {
                         text: "Выхожу..",
-                        tts:String(str[3][0])+str[0]+String(str[3][1]),
+                        tts:t,
                         end_session:true
                     },
                     version: '1.0',
@@ -321,7 +322,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: str[0],
-                        tts:String(str[3][0])+str[0]+String(str[3][1]),
+                        tts:t,
                         buttons:str[2]
                     },
                     session_state: sessionState,
@@ -334,7 +335,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "",
-                        tts:String(str[3][0])+str[0]+String(str[3][1]),
+                        tts:t,
                         buttons:str[2],
                         card: {type:"BigImage",
                                 image_id: str[1],
@@ -431,7 +432,7 @@ function getStr(sessionState,request){
     			sounds[0] = storyObj.t;
     		}
 			if (storyObj.g!= undefined){
-    			sounds[0] = storyObj.g;
+    			sounds[1] = storyObj.g;
 			}
             if (storyObj.p != undefined){
                 paintID = storyObj.p
