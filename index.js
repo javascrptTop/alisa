@@ -303,7 +303,7 @@ module.exports = async (req, res) => {
         ));
     }else{
         const str = getStr(sessionState,request);
-        const t = String(str[3][0])+str[0]+String(str[3][1]);
+        const t = str[0];
         if (str[1] == "выход"){
             res.end(JSON.stringify(
                 {
@@ -675,7 +675,7 @@ function getStr(sessionState,request){
                     else{
                         if (str==""){
                             str = ["Пока неправильно, можешь попробовать еще раз.","Неправильно.","Ответ неверный.","Неверно.","Пока неправильно."][Math.floor(Math.random() * 5)]
-							sounds.push('<speaker audio="alice-sounds-game-win-1.opus">');
+							sounds[0] = '<speaker audio="alice-sounds-game-win-1.opus">';
                             quests[questionNum2]["variants"].forEach(function(item, i, q) {
                                 if (item == "nan"){
                                     return;
@@ -687,7 +687,7 @@ function getStr(sessionState,request){
                     }
                 }else{
                     str += ["Правильно!\n","Молодец!\n","Молодец, правильно!\n","Неплохо!\n"][Math.floor(Math.random() * 4)];
-                    sounds.push('<speaker audio="alice-sounds-game-win-1.opus">');
+                    sounds[0] = '<speaker audio="alice-sounds-game-win-1.opus">';
 
                     questionNum+=1;
                     delete quests[questionNum2]; 
