@@ -303,12 +303,13 @@ module.exports = async (req, res) => {
         ));
     }else{
         const str = getStr(sessionState,request);
-        const = str[3][0]+str+str[3][1];
+        const t = str[3][0]+str+str[3][1];
         if (str[1] == "выход"){
             res.end(JSON.stringify(
                 {
                     response: {
                         text: "Выхожу..",
+                        tts:t,
                         end_session:true
                     },
                     version: '1.0',
@@ -321,6 +322,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: str[0],
+                        tts:t,
                         buttons:str[2]
                     },
                     session_state: sessionState,
@@ -333,6 +335,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "",
+                        tts:t,
                         buttons:str[2],
                         card: {type:"BigImage",
                                 image_id: str[1],
