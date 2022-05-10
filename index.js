@@ -681,7 +681,7 @@ function getStr(sessionState,request){
                     else{
                         if (str==""){
                             str = ["Пока неправильно, можешь попробовать еще раз.","Неправильно.","Ответ неверный.","Неверно.","Пока неправильно."][Math.floor(Math.random() * 5)]
-							sounds[0] = '<speaker audio="alice-sounds-game-win-1.opus">';
+							sounds[0] = '<speaker audio="alice-sounds-game-loss-2.opus">';
                             quests[questionNum2]["variants"].forEach(function(item, i, q) {
                                 if (item == "nan"){
                                     return;
