@@ -9,8 +9,8 @@ const story = {
         "8": {
             a: "Женщина говорит:'Большое спасибо, тут я написала всё, что может пригодится в поиске',- и протягивает записку. \n Записка написана непонятным почерком и чтобы его разгадать прийдется постараться.",
             b: 1,
-            c: ["01"]
-            t: '<speaker audio="alice-music-guitar-a-1.opus">',
+            c: ["01"],
+            t: '<speaker audio="alice-music-guitar-a-1.opus">'
         },
         "7": {
             a: "'Очень жаль.. До свидания!'",
@@ -36,7 +36,7 @@ const story = {
                 "1": {
                     a: "'Хорошо, я обращусь в другое агенство',-сказал клиент. \n К Вам приходит начальник и говорит:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                     b: -1,
-                    c: ["09"]
+                    c: ["09"],
                     t: '<speaker audio="alice-music-guitar-e-1.opus">',
                     g: '<speaker audio="alice-sounds-game-loss-3.opus">',
                 },
@@ -44,7 +44,7 @@ const story = {
             "1": {
                 a: "К Вам приходит начальник и говорит:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                 b: -1,
-                c: ["09"]
+                c: ["09"],
                 g: '<speaker audio="alice-sounds-game-loss-3.opus">',
             },
         },
@@ -113,7 +113,7 @@ const story = {
                 "0": {
                     a: "Друг не отвечает.",
                     b: -1,
-                    c: ["041"]
+                    c: ["041"],
                     t: '<speaker audio="alice-sounds-things-phone-5.opus">',
                 },
             },
@@ -177,7 +177,7 @@ const story = {
                     "0": {
                         a: "Приехала полиция, но не смогла понять где он находится",
                         b: 0,
-                        c: ["04111"]
+                        c: ["04111"],
                         t: '<speaker audio="alice-sounds-things-siren-1.opus">',
                     },
                     "1": {
@@ -428,8 +428,12 @@ function getStr(sessionState,request){
     	if (fromAnyAction(request,["Повтори","повтор","вопрос","повторка","повторить","фраза","вопрос","ребус","фразы","вопросы","ребусы"])){
 		    const storyObj = getStoryObj(travel,story);
     		str+=storyObj.a+"\n";
-    		sounds.push(storyObj.t)
-    		sounds.push(storyObj.g)
+    		if (storyObj.t!= undefined){
+    			sounds[0] = storyObj.t;
+    		}
+			if (storyObj.g!= undefined){
+    			sounds[0] = storyObj.g;
+			}
             if (storyObj.p != undefined){
                 paintID = storyObj.p
             }
