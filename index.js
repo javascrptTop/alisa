@@ -5,24 +5,24 @@ const story = {
         b: 0,
         c: ["8", "7"],
         p: "1030494/da784de05cbaac96cc8b",
-        t: "<speaker audio="alice-sounds-game-boot-1.opus">",
+        t: '<speaker audio="alice-sounds-game-boot-1.opus">',
         "8": {
             a: "Женщина говорит:'Большое спасибо, тут я написала всё, что может пригодится в поиске',- и протягивает записку. \n Записка написана непонятным почерком и чтобы его разгадать прийдется постараться.",
             b: 1,
             c: ["01"]
-            t: "<speaker audio="alice-music-guitar-a-1.opus">",
+            t: '<speaker audio="alice-music-guitar-a-1.opus">',
         },
         "7": {
             a: "'Очень жаль.. До свидания!'",
             b: -1,
             c: ["01"],
-            t: "<speaker audio="alice-music-guitar-e-1.opus">",
+            t: '<speaker audio="alice-music-guitar-e-1.opus">',
         },
         "1": {
             a: "Девушка ушла, а через 2 часа после её визита вам позвонили на телефон. Ответить?",
             b: 0,
             c: ["0", "1"],
-            t: "<speaker audio="alice-sounds-things-phone-2.opus">",
+            t: '<speaker audio="alice-sounds-things-phone-2.opus">',
             "0": {
                 a: "Говорит мужчина:\n'Здравствуйте! У меня пропала дочь, вы поможете мне её найти?'",
                 b: 0,
@@ -31,28 +31,28 @@ const story = {
                     a: "Мужчина:\n-Я тогда пришлю вам все данные, которые вам может быть помогут.*Данные пришли на телефон детектива*",
                     b: -1,
                     c: ["02"],
-                    t: "<speaker audio="alice-music-guitar-a-1.opus">",
+                    t: '<speaker audio="alice-music-guitar-a-1.opus">',
                 },
                 "1": {
                     a: "'Хорошо, я обращусь в другое агенство',-сказал клиент. \n К Вам приходит начальник и говорит:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                     b: -1,
                     c: ["09"]
-                    t: "<speaker audio="alice-music-guitar-e-1.opus">",
-                    g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                    t: '<speaker audio="alice-music-guitar-e-1.opus">',
+                    g: '<speaker audio="alice-sounds-game-loss-3.opus">',
                 },
             },
             "1": {
                 a: "К Вам приходит начальник и говорит:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                 b: -1,
                 c: ["09"]
-                g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                g: '<speaker audio="alice-sounds-game-loss-3.opus">',
             },
         },
         "2": {
             a: "Прошел час, раздаётся телефонный звонок. Ответить?",
             b: 0,
             c: ["0", "1"],
-            t: "<speaker audio="alice-sounds-things-phone-2.opus">",
+            t: '<speaker audio="alice-sounds-things-phone-2.opus">',
             "0": {
                 a: "Говорит Женщина:'Добрый день! Мой сын куда-то пропал. Вы сможете мне помочь?'",
                 b: 0,
@@ -61,20 +61,20 @@ const story = {
                     a: "Женщина:'Я отправлю вам ссылку на страницу сына в соцсети'.",
                     b: 2,
                     c: ["03"],
-                    t: "<speaker audio="alice-music-guitar-a-1.opus">",
+                    t: '<speaker audio="alice-music-guitar-a-1.opus">',
                 },
                 "1": {
                     a: "*Приходит начальник детектива* и говорит:-Вы не выполняете должно свои обязанности, поэтому  я вынужден вас уволить. До свидания!*Прошло 2 недели. Домой к бывшему детективу кто-то стучится, но глазок закрыт*Открыть дверь?",
                     b: -1,
                     c: ["09"],
-                    t: " <speaker audio="alice-music-guitar-e-1.opus">",
+                    t: '<speaker audio="alice-music-guitar-e-1.opus">',
                 },
             },
             "1": {
                 a: "К Вам приходит начальник и говорит:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                 b: -1,
                 c: ["09"],
-                g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                g: '<speaker audio="alice-sounds-game-loss-3.opus">',
             },
         },
         "3": {
@@ -86,7 +86,7 @@ const story = {
                 b: 4,
                 c: "0",
                 p: "997614/f3e8b18f9f53002b7786",
-                t: "<speaker audio="alice-sounds-game-powerup-1.opus">",
+                t: '<speaker audio="alice-sounds-game-powerup-1.opus">',
                 "0": {
                     a: "Директор:'Вам нужен доступ к камерам?'",
                     b: 0,
@@ -95,8 +95,8 @@ const story = {
                         a: "Вам позвонил начальник и сказал:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                         b: -1,
                         c: ["09"],
-                        t: "<speaker audio="alice-sounds-game-8-bit-phone-1.opus">",
-                        g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                        t: '<speaker audio="alice-sounds-game-8-bit-phone-1.opus">',
+                        g: '<speaker audio="alice-sounds-game-loss-3.opus">',
                     }
                 }
             },
@@ -105,7 +105,7 @@ const story = {
             a: "На камере был замечен лучший друг детектива.\n Позвонить другу?",
             b: 0,
             c: ["0", "1"],
-            t: "<speaker audio="alice-music-violin-g-1.opus">",
+            t: '<speaker audio="alice-music-violin-g-1.opus">',
             "0": {
                 a: "",
                 b: 6,
@@ -114,7 +114,7 @@ const story = {
                     a: "Друг не отвечает.",
                     b: -1,
                     c: ["041"]
-                    t: "<speaker audio="alice-sounds-things-phone-5.opus">",
+                    t: '<speaker audio="alice-sounds-things-phone-5.opus">',
                 },
             },
             "1": {
@@ -126,12 +126,12 @@ const story = {
                     b: 0,
                     c: ["0", "1"],
                     p: "1521359/3697484a0a3317924820",
-                    t: "<speaker audio="alice-sounds-things-car-1.opus">",
+                    t: '<speaker audio="alice-sounds-things-car-1.opus">',
                     "0": {
                         a: "Никто не выходит.",
                         b: -1,
                         c: ["04101"],
-                        t: "<speaker audio="alice-sounds-things-door-1.opus">",
+                        t: '<speaker audio="alice-sounds-things-door-1.opus">',
                     },
                     "1": {
                         a: "В доме не было слышно звуков. Вскрыть дверь?",
@@ -142,7 +142,7 @@ const story = {
                             b: 0,
                             c: ["0", "1"],
                             p: "1652229/e9e659a5dec6ff162196",
-                            t: "<speaker audio="alice-sounds-things-construction-1.opus">",
+                            t: '<speaker audio="alice-sounds-things-construction-1.opus">',
                             "0": {
                                 a: "В доме вы нашли зашифрованное письмо.",
                                 b: 12,
@@ -157,16 +157,16 @@ const story = {
                                 a: "Вам позвонил начальник и сказал:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                                 b: -1,
                                 c: ["09"],
-                                t: "<speaker audio="alice-sounds-game-8-bit-phone-1.opus">",
-                                g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                                t: '<speaker audio="alice-sounds-game-8-bit-phone-1.opus">',
+                                g: '<speaker audio="alice-sounds-game-loss-3.opus">',
                             },
                         },
                         "1": {
                             a: "Вам позвонил начальник и сказал:'Вы не справляетесь со своей работой, и я вынужден вас уволить, до свидания'",
                             b: -1,
                             c: ["09"],
-                            t: "<speaker audio="alice-sounds-game-8-bit-phone-1.opus">",
-                            g: "<speaker audio="alice-sounds-game-loss-3.opus">",
+                            t: '<speaker audio="alice-sounds-game-8-bit-phone-1.opus">',
+                            g: '<speaker audio="alice-sounds-game-loss-3.opus">',
                         },
                     },
                 },
@@ -178,7 +178,7 @@ const story = {
                         a: "Приехала полиция, но не смогла понять где он находится",
                         b: 0,
                         c: ["04111"]
-                        t: "<speaker audio="alice-sounds-things-siren-1.opus">",
+                        t: '<speaker audio="alice-sounds-things-siren-1.opus">',
                     },
                     "1": {
                         a: "Вы собрали все улики вместе и нашли примерное местоположение друга. Поехать туда?",
@@ -188,18 +188,18 @@ const story = {
                             a: "Вы приехали в заброшенный дом. В доме никого небыло. Хотите его обыскать?",
                             b: 0,
                             c: ["0", "1"],
-                            t: "<speaker audio="alice-sounds-things-car-1.opus">",
+                            t: '<speaker audio="alice-sounds-things-car-1.opus">',
                             "0": {
                                 a: "Вы нашли закрытый подвал, из которого доносятся голоса. Замок прийдется вскрыть.",
                                 b: 8,
                                 c: ["1"],
                                 p: "1652229/fd1904bbb5e337bde6e2",
-                                g: "<speaker audio="alice-sounds-things-construction-1.opus">",
+                                g: '<speaker audio="alice-sounds-things-construction-1.opus">',
                                 "1": {
                                     a: "В подвале оказались пропавшие дети. Вы вызвали полицию, и через время вашего друга арестовали.",
                                     b: -1,
                                     c: [],
-                                    g: "<speaker audio="alice-sounds-things-siren-1.opus">",
+                                    g: '<speaker audio="alice-sounds-things-siren-1.opus">',
                                 },
                             },
                             "1": {
@@ -210,8 +210,8 @@ const story = {
                                     a: "Друг:\n -Похоже ты догадался...\nЧтож...\n*Выстрел*",
                                     b: 0,
                                     c: ["0", "1"],
-                                    t: "<speaker audio="alice-sounds-human-laugh-3.opus">",
-                                    g: "<speaker audio="alice-sounds-things-gun-1.opus">",
+                                    t: '<speaker audio="alice-sounds-human-laugh-3.opus">',
+                                    g: '<speaker audio="alice-sounds-things-gun-1.opus">',
                                 },
                                 "1": {
                                     a: "Забежать в дом?",
@@ -230,7 +230,7 @@ const story = {
                                             a: "Вы захотели убежать но увидели как к дому. Подходит друг",
                                             b: -1,
                                             c: ["04111010"],
-                                            t: "<speaker audio="alice-music-violin-e-1.opus">",
+                                            t: '<speaker audio="alice-music-violin-e-1.opus">',
                                         },
                                         "1": {
                                             a: "Ваш друг начал подходить к дому, но не заметил вас. Поговорить с ним?",
@@ -255,8 +255,8 @@ const story = {
                             a: "*Звонок начальника*\n Начальник:\n -Детектив, вы уже почти раскрыли дело. Вы действительно хотите его закончить? Я вынужден вас уволить. До свидания!",
                             b: 0,
                             c: ["09"],
-                            t: "<speaker audio="alice-sounds-things-phone-1.opus">",
-                            g: "<speaker audio="alice-music-guitar-e-1.opus">",
+                            t: '<speaker audio="alice-sounds-things-phone-1.opus">',
+                            g: '<speaker audio="alice-music-guitar-e-1.opus">',
                         },
                     },
                 },
@@ -267,12 +267,12 @@ const story = {
             b: -1,
             c: ["2"],
             p: "1030494/8e99cf57ac4db8ce36a7",
-            t: "<speaker audio="alice-sounds-things-siren-2.opus">",
+            t: '<speaker audio="alice-sounds-things-siren-2.opus">',
             "2": {
                 a: "После суда вас посадили в тюрьму. Однако настоящего виновника исчезновений не нашли...",
                 b: -2,
                 c: [],
-                g: "<speaker audio="alice-sounds-human-laugh-3.opus">",
+                g: '<speaker audio="alice-sounds-human-laugh-3.opus">',
             },
         }
     }
