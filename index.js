@@ -308,7 +308,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "Выхожу..",
-                        tts:"",
+                        tts:String(str[3][0])+str[0]+String(str[3][1]),
                         end_session:true
                     },
                     version: '1.0',
@@ -321,7 +321,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: str[0],
-                        tts:"",
+                        tts:String(str[3][0])+str[0]+String(str[3][1]),
                         buttons:str[2]
                     },
                     session_state: sessionState,
@@ -334,7 +334,7 @@ module.exports = async (req, res) => {
                 {
                     response: {
                         text: "",
-                        tts:"",
+                        tts:String(str[3][0])+str[0]+String(str[3][1]),
                         buttons:str[2],
                         card: {type:"BigImage",
                                 image_id: str[1],
