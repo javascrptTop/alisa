@@ -308,7 +308,7 @@ module.exports = async (req, res) => {
             res.end(JSON.stringify(
                 {
                     response: {
-                        text: "Выхожу..",
+                        text: t,
                         tts:t,
                         end_session:true
                     },
@@ -321,8 +321,7 @@ module.exports = async (req, res) => {
             res.end(JSON.stringify(
                 {
                     response: {
-                        text: str[0],
-                        tts:t,
+                        text: t,
                         buttons:str[2]
                     },
                     session_state: sessionState,
@@ -334,8 +333,7 @@ module.exports = async (req, res) => {
             res.end(JSON.stringify(
                 {
                     response: {
-                        text: "",
-                        tts:t,
+                        text: t,
                         buttons:str[2],
                         card: {type:"BigImage",
                                 image_id: str[1],
