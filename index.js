@@ -303,7 +303,7 @@ module.exports = async (req, res) => {
         ));
     }else{
         const str = getStr(sessionState,request);
-        const t = str[3][0]+str+str[3][1];
+        const t = String(str[3][0])+str+String(str[3][1]);
         if (str[1] == "выход"){
             res.end(JSON.stringify(
                 {
