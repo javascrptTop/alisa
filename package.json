@@ -6,5 +6,8 @@
 
     "dependencies": {
         "micro": "^9.1.0"
+    },
+    "scripts": {
+        "build": "Node.js build --output public"
     }
 }
