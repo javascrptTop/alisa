@@ -8,7 +8,7 @@ app.post('/', function(req, res) {
     const { request, session, version, state } = JSON.parse(req.body);
     const sessionState = state && state.session || {};
     if (session["new"]){
-        res.end(JSON.stringify(
+        res.send(JSON.stringify(
             {
                 version,
                 session, 
@@ -28,7 +28,7 @@ app.post('/', function(req, res) {
         const str = getStr(sessionState,request);
         const t = String(str[3][0])+str[0]+String(str[3][1]);
         if (str[1] == "выход"){
-            res.end(JSON.stringify(
+            res.send(JSON.stringify(
                 {
                     response: {
                         text: "Выхожу..",
@@ -41,7 +41,7 @@ app.post('/', function(req, res) {
         }
         else if (str[1]==""||str[1] == undefined)
         {
-            res.end(JSON.stringify(
+            res.send(JSON.stringify(
                 {
                     response: {
                         text: str[0],
@@ -54,7 +54,7 @@ app.post('/', function(req, res) {
             ))
         }
         else{
-            res.end(JSON.stringify(
+            res.send(JSON.stringify(
                 {
                     response: {
                         text: "",
@@ -532,7 +532,7 @@ function getAns(r, variants, arc = -1) {
         variants.forEach(function(item, i, variants) {
             k = 0;
             item.forEach(function(itemVar, i2, item) {
-                if (r["original_utterance"].indexOf(itemVar.split(/_/gi, ' '))!=-1){
+                if (r["command"].indexOf(itemVar.split(/_/gi, ' '))!=-1){
                     k += 1;
                 }   
             })
@@ -542,7 +542,7 @@ function getAns(r, variants, arc = -1) {
         })
     }
     if (b){
-        if (r["original_utterance"].indexOf("я за")!= -1){
+        if (r["command"].indexOf("я за")!= -1){
             ind = 0;
         }
     }
