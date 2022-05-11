@@ -532,13 +532,16 @@ function getAns(r, variants, arc = -1) {
         variants.forEach(function(item, i, variants) {
             k = 0;
             item.forEach(function(itemVar, i2, item) {
-                if (r["command"].indexOf(itemVar.split(/_/gi, ' '))!=-1){
-                    k += 1;
-                }   
+                itemVar.split(/_/).forEach(function(item2, i, itemVar) {
+                    if (r["command"].indexOf(item2)!=-1){
+                        k += 1;
+                    }
+
+                })
+                if (k>variants[i].length){
+                    ind = i;
+                }
             })
-            if (k>variants[i].length){
-                ind = i;
-            }
         })
     }
     if (b){
