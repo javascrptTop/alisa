@@ -5,7 +5,7 @@ const storyMissions={"1":{a:"Разгадайте ребус.",b:["письмо"
 var express = require('express');
 var app = express();
 app.post('/', function(req, res) { 
-    const { request, session, version, state } = JSON.stringify(req.body);
+    const { request, session, version, state } = JSON.parse(req.body);
     const sessionState = state && state.session || {};
     if (session["new"]){
         res.end(JSON.stringify(
